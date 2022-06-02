@@ -1,0 +1,1 @@
+<style>html, body { height: 100%!important; }</style> <div class="h-100 d-flex justify-content-center align-items-center"> <h1 class="display-3">404</h1> </div>

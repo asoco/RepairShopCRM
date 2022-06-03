@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1
--- Время создания: Июн 01 2022 г., 10:01
--- Версия сервера: 10.4.11-MariaDB
--- Версия PHP: 7.4.6
+-- Хост: localhost:3306
+-- Время создания: Июн 03 2022 г., 14:31
+-- Версия сервера: 8.0.28-0ubuntu0.20.04.3
+-- Версия PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `service_center`
+-- База данных: `wh48_service`
 --
 
 -- --------------------------------------------------------
@@ -28,16 +29,16 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `catalog_parts` (
-  `ID_cat_part` int(11) NOT NULL,
+  `ID_cat_part` int NOT NULL,
   `Name_part` varchar(300) NOT NULL,
-  `Price_part` int(11) DEFAULT NULL,
+  `Price_part` int DEFAULT NULL,
   `Color_part` varchar(20) DEFAULT NULL,
   `Vendor_part` varchar(20) DEFAULT NULL,
   `Condition_part` varchar(300) DEFAULT NULL,
-  `Quantity_part` int(11) DEFAULT NULL,
+  `Quantity_part` int DEFAULT NULL,
   `Status_delivery` varchar(30) NOT NULL,
-  `ID_provider` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `ID_provider` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `catalog_parts`
@@ -64,11 +65,11 @@ INSERT INTO `catalog_parts` (`ID_cat_part`, `Name_part`, `Price_part`, `Color_pa
 --
 
 CREATE TABLE `clients` (
-  `ID_client` int(11) NOT NULL,
+  `ID_client` int NOT NULL,
   `Name_client` varchar(50) DEFAULT NULL,
   `phone_client` varchar(20) DEFAULT NULL,
   `referrer` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `clients`
@@ -135,20 +136,20 @@ INSERT INTO `clients` (`ID_client`, `Name_client`, `phone_client`, `referrer`) V
 --
 
 CREATE TABLE `client_orders` (
-  `ID_order` int(11) NOT NULL,
+  `ID_order` int NOT NULL,
   `sn_hw_order` varchar(50) DEFAULT NULL,
   `name_hw_order` varchar(300) DEFAULT NULL,
   `order_datetime` datetime DEFAULT NULL,
   `order_end_datetime` datetime DEFAULT NULL,
-  `warranty_order` tinyint(2) DEFAULT NULL,
+  `warranty_order` tinyint DEFAULT NULL,
   `exec_order_start` datetime DEFAULT NULL,
   `exec_order_end` datetime DEFAULT NULL,
-  `ID_client` int(11) DEFAULT NULL,
-  `price_order` int(11) DEFAULT NULL,
+  `ID_client` int DEFAULT NULL,
+  `price_order` int DEFAULT NULL,
   `device_condition` varchar(300) NOT NULL,
   `out_order` datetime NOT NULL,
   `problems` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `client_orders`
@@ -198,13 +199,13 @@ INSERT INTO `client_orders` (`ID_order`, `sn_hw_order`, `name_hw_order`, `order_
 --
 
 CREATE TABLE `consigment` (
-  `ID_consigment` int(11) NOT NULL,
+  `ID_consigment` int NOT NULL,
   `Condition_consigment` varchar(20) DEFAULT NULL,
-  `ID_provider` int(11) DEFAULT NULL,
-  `ID_cat_part` int(11) DEFAULT NULL,
+  `ID_provider` int DEFAULT NULL,
+  `ID_cat_part` int DEFAULT NULL,
   `Date_consigment` datetime DEFAULT NULL,
   `Quantity_consigment` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -213,14 +214,14 @@ CREATE TABLE `consigment` (
 --
 
 CREATE TABLE `employees` (
-  `ID_empl` int(11) NOT NULL,
+  `ID_empl` int NOT NULL,
   `Name_empl` varchar(50) DEFAULT NULL,
   `Phone_empl` varchar(20) DEFAULT NULL,
   `Hiring_date_empl` datetime DEFAULT NULL,
   `Adress_empl` varchar(20) DEFAULT NULL,
   `Dismissall_date_empl` datetime DEFAULT NULL,
-  `ID_job` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `ID_job` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `employees`
@@ -239,9 +240,9 @@ INSERT INTO `employees` (`ID_empl`, `Name_empl`, `Phone_empl`, `Hiring_date_empl
 --
 
 CREATE TABLE `jobs` (
-  `ID_job` int(11) NOT NULL,
+  `ID_job` int NOT NULL,
   `Name_job` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `jobs`
@@ -259,9 +260,9 @@ INSERT INTO `jobs` (`ID_job`, `Name_job`) VALUES
 --
 
 CREATE TABLE `order_breakages` (
-  `ID_oder` int(11) NOT NULL,
-  `ID_breakage` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `ID_oder` int NOT NULL,
+  `ID_breakage` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -270,9 +271,9 @@ CREATE TABLE `order_breakages` (
 --
 
 CREATE TABLE `order_empls` (
-  `ID_order` int(11) NOT NULL,
-  `ID_empl` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `ID_order` int NOT NULL,
+  `ID_empl` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `order_empls`
@@ -280,8 +281,8 @@ CREATE TABLE `order_empls` (
 
 INSERT INTO `order_empls` (`ID_order`, `ID_empl`) VALUES
 (34, 1),
-(34, 2),
 (35, 1),
+(34, 2),
 (148, 3);
 
 -- --------------------------------------------------------
@@ -291,9 +292,9 @@ INSERT INTO `order_empls` (`ID_order`, `ID_empl`) VALUES
 --
 
 CREATE TABLE `order_parts` (
-  `ID_cat_part` int(11) NOT NULL,
-  `ID_oder` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `ID_cat_part` int NOT NULL,
+  `ID_oder` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -302,9 +303,9 @@ CREATE TABLE `order_parts` (
 --
 
 CREATE TABLE `order_works` (
-  `ID_oder` int(11) NOT NULL,
-  `ID_work` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `ID_oder` int NOT NULL,
+  `ID_work` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -313,10 +314,10 @@ CREATE TABLE `order_works` (
 --
 
 CREATE TABLE `price_works` (
-  `ID_work` int(11) NOT NULL,
-  `Price_work` int(11) DEFAULT NULL,
+  `ID_work` int NOT NULL,
+  `Price_work` int DEFAULT NULL,
   `Name_work` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -325,9 +326,9 @@ CREATE TABLE `price_works` (
 --
 
 CREATE TABLE `productlist` (
-  `id_prodlist` int(11) NOT NULL,
+  `id_prodlist` int NOT NULL,
   `name_prod_list` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `productlist`
@@ -360,12 +361,12 @@ INSERT INTO `productlist` (`id_prodlist`, `name_prod_list`) VALUES
 --
 
 CREATE TABLE `providers` (
-  `ID_provider` int(11) NOT NULL,
+  `ID_provider` int NOT NULL,
   `Name_provider` varchar(20) DEFAULT NULL,
   `Adress_provider` varchar(70) DEFAULT NULL,
   `Phone_provider` varchar(20) DEFAULT NULL,
   `Name_Rprsnt` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `providers`
@@ -384,9 +385,9 @@ INSERT INTO `providers` (`ID_provider`, `Name_provider`, `Adress_provider`, `Pho
 --
 
 CREATE TABLE `typical_breakage` (
-  `ID_breakage` int(11) NOT NULL,
+  `ID_breakage` int NOT NULL,
   `name_breakage` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -395,20 +396,22 @@ CREATE TABLE `typical_breakage` (
 --
 
 CREATE TABLE `users` (
-  `ID_user` int(11) NOT NULL,
+  `ID_user` int NOT NULL,
   `login` varchar(50) NOT NULL,
-  `pass` varchar(50) DEFAULT NULL,
+  `pass` varchar(90) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `name` varchar(30) DEFAULT NULL,
   `role` varchar(30) DEFAULT NULL,
   `avatar` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `users`
 --
 
 INSERT INTO `users` (`ID_user`, `login`, `pass`, `name`, `role`, `avatar`) VALUES
-(1, 'admin', '$2y$10$Uu4JQkxihX1cOm.OVakZ3eVIgiSV80lAPFnkUXDucs8', 'Даниил', 'Администратор', 'img\\avatars\\admin.jpg');
+(1, 'admin', '$2y$10$Uu4JQkxihX1cOm.OVakZ3eVIgiSV80lAPFnkUXDucs8', 'Даниил', 'Администратор', 'img\\avatars\\admin.jpg'),
+(12, 'leth', '$2y$10$.4rrLwLobln99ExDnmLE7u5LALdkdAT0EIQ.JgotWE0x1KBVBVmC6', 'gor', 'Администратор', NULL),
+(13, 'gordaniel', '$2y$10$LnYZXCUpip/moQHHziUoDOmYpQnq0WUy0toRdyiL/Otbd8WtRgrye', 'Гор', 'Менеджер', NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -521,67 +524,67 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `catalog_parts`
 --
 ALTER TABLE `catalog_parts`
-  MODIFY `ID_cat_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `ID_cat_part` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT для таблицы `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `ID_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `ID_client` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT для таблицы `client_orders`
 --
 ALTER TABLE `client_orders`
-  MODIFY `ID_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `ID_order` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
 
 --
 -- AUTO_INCREMENT для таблицы `consigment`
 --
 ALTER TABLE `consigment`
-  MODIFY `ID_consigment` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_consigment` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `ID_empl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_empl` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `ID_job` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_job` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `price_works`
 --
 ALTER TABLE `price_works`
-  MODIFY `ID_work` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_work` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `productlist`
 --
 ALTER TABLE `productlist`
-  MODIFY `id_prodlist` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_prodlist` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT для таблицы `providers`
 --
 ALTER TABLE `providers`
-  MODIFY `ID_provider` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_provider` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `typical_breakage`
 --
 ALTER TABLE `typical_breakage`
-  MODIFY `ID_breakage` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_breakage` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

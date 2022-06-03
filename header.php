@@ -6,7 +6,7 @@
             </div>
             <div class="sidebar-item sidebar-header d-flex flex-nowrap">
                 <div class="user-pic">
-                    <img class="img-responsive img-rounded" <?php print('src="'. $user['avatar'].'"'); ?> alt="User picture">
+                    <img class="img-responsive img-rounded" src=" <?php if ($user['avatar']) echo $user['avatar']; else echo 'img\avatars\user.jpg'; ?>"  alt="User picture">
                 </div>
                 <div class="user-info">
                     <span class="user-name">

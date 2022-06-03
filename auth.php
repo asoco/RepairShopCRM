@@ -15,8 +15,9 @@ $result = $mysql->query("SELECT * FROM `users` WHERE `login`='$login'");
 $user = $result->fetch_assoc();
 
 $pass_verify = password_verify($pass, $user['pass']);
-if(count($user) == 0){
+if(count($user) == 0 || !$pass_verify){
 	echo"Такой пользователь не найден";
+	header('Location: login.php');
 	exit();
 }
 
